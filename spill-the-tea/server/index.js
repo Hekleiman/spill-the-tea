@@ -13,7 +13,7 @@ app.use(express.json());
 // Connect Mongoose to MongoDB
 mongoose
   .connect(
-    'mongodb+srv://parkermasaru:p9N8FsKDw5nzsk7i@teacluster.t30wk3i.mongodb.net/?retryWrites=true&w=majority&appName=TeaCluster'
+    'mongodb+srv://hekleiman:BeygyK6iOqjaHO2A@cluster0.mc116zi.mongodb.net/?'
   )
   .then(() => {
     console.log('✅ Connected to MongoDB');
