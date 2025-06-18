@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import NavBar from './components/NavBar';
+import SignUpPage from './components/SignUpPage';
+import SignInPage from './components/SignInPage';
 import TeaForm from './components/TeaForm';
 import TeaList from './components/TeaList';
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [user, setUser] = useState(null);
   //const [count, setCount] = useState(0);
   // array of teas change back to ([]) when ready to add
   const [teas, setTeas] = useState([]);
@@ -55,25 +59,36 @@ function App() {
       .catch(console.error);
   };
   return (
+     <Router>
     <div>
-      <h1>Spill the Tea</h1>
-      <TeaForm
-        addTea={addTea}
-        updateTea={updateTea}
-        teaToEdit={teaBeingEdited}
-        teas={teas}
-      />
-
-      <TeaList
-        teas={teas}
-        onDelete={deleteTea}
-        onEdit={setTeaBeingEdited}
-        showPopUp={showPopUp}
-        setShowPopUp={setShowPopUp}
-        updateTea={updateTea}
-      />
+      <NavBar user={user} setUser={setUser} />
+      <Routes>
+        <Route path="/" element={
+          <div>
+            <h1>Spill the Tea</h1>
+            <TeaForm
+              addTea={addTea}
+              updateTea={updateTea}
+              teaToEdit={teaBeingEdited}
+              teas={teas}
+            />
+            <TeaList
+              teas={teas}
+              onDelete={deleteTea}
+              onEdit={setTeaBeingEdited}
+              showPopUp={showPopUp}
+              setShowPopUp={setShowPopUp}
+              updateTea={updateTea}
+            />
+          </div>
+        } />
+        <Route path="/signin" element={<SignInPage setUser={setUser} />} />
+        <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+      </Routes>
     </div>
-  );
+  </Router>
+);
+
 }
 
 export default App;
