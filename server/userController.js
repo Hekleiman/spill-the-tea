@@ -25,7 +25,6 @@ export const signup = async (req, res, next) => {
         });
     }
 
-    // Password strength validation (best practice)
     if (password.length < 6) {
       return res
         .status(400)
@@ -35,11 +34,11 @@ export const signup = async (req, res, next) => {
         });
     }
 
-    // Create and save user (password hashing handled by model)
+    // Create and save user
     const newUser = new User({ username, password, email });
     await newUser.save();
 
-    // Send success response (consistent with frontend expectations)
+    // Send success response
     return res.status(201).json({
       success: true,
       message: 'User created successfully',
@@ -48,7 +47,7 @@ export const signup = async (req, res, next) => {
         username: newUser.username,
         email: newUser.email,
       },
-      token: `temp_token_${newUser._id}` // Placeholder token (replace with JWT later)
+      token: `temp_token_${newUser._id}`
     });
   } catch (err) {
     // Handle database connection error
@@ -59,7 +58,7 @@ export const signup = async (req, res, next) => {
       });
     }
 
-    // Handle duplicate key error (MongoDB constraint violation)
+    // Handle duplicate key error
     if (err.code === 11000) {
       return res
         .status(409)
@@ -77,7 +76,7 @@ export const signup = async (req, res, next) => {
       });
     }
     
-    // Log error for debugging (security best practice)
+    // Log error for debugging
     console.error('Signup error:', err);
     return res.status(500).json({ 
       success: false, 
@@ -108,7 +107,7 @@ export const login = async (req, res, next) => {
     const query = username ? { username } : { email };
     const user = await User.findOne(query);
     
-    // Validate credentials (secure comparison)
+    // Validate credentials
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ 
         success: false, 
@@ -116,7 +115,7 @@ export const login = async (req, res, next) => {
       });
     }
 
-    // Send success response (consistent with frontend expectations)
+    // Send success response
     return res.status(200).json({
       success: true,
       message: 'Login successful',
@@ -125,7 +124,7 @@ export const login = async (req, res, next) => {
         username: user.username,
         email: user.email,
       },
-      token: `temp_token_${user._id}` // Placeholder token (replace with JWT later)
+      token: `temp_token_${user._id}`
     });
   } catch (err) {
     // Handle database connection error
@@ -136,7 +135,7 @@ export const login = async (req, res, next) => {
       });
     }
 
-    // Log error for debugging (security best practice)
+    // Log error for debugging
     console.error('Login error:', err);
     return res.status(500).json({ 
       success: false, 
