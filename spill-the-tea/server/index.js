@@ -1,11 +1,12 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const TeaController = require('./TeaController');
+// server.js
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import { createTea, getTeas, deleteTea, updateTea } from './TeaController.js';
+import { signup, login } from './userController.js';
 
 const app = express();
 const PORT = 3000;
-const teaRouter = express.Router();
 
 app.use(cors());
 app.use(express.json());
@@ -17,39 +18,30 @@ mongoose
   )
   .then(() => {
     console.log('✅ Connected to MongoDB');
-    app.listen(PORT, () => console.log(`✅ Server running on ${PORT}`));
   })
   .catch((err) => {
     console.error('❌ MongoDB connection error:', err.message);
   });
 
-// Express routes to know what to do when someone visits a specific URL
+// Start the server regardless of MongoDB connection status
+app.listen(PORT, () => console.log(`✅ Server running on ${PORT}`));
+
+// Basic route
 app.get('/', (req, res) => {
   res.send('Welcome to Spill the Tea');
 });
 
-// GET ALL TEA DATA
-app.get('/api/teas', TeaController.getTeas, (req, res) => {
-  if (res.locals.teas) {
-    console.log('if');
-    res.send(res.locals.teas);
-  } else {
-    console.log('else');
-    res.send('Welcome to Spill the Tea');
-  }
-});
+// USER ROUTES
+app.post('/api/signup', signup);
+app.post('/api/login', login);
 
-// CONTROLLERS
+// TEA ROUTES
+app.get('/api/teas', getTeas);
+app.post('/api/teas', createTea);
+app.delete('/api/teas/:id', deleteTea);
+app.patch('/api/teas/:id', updateTea);
 
-//CREATE A TEA
-app.post('/api/teas', TeaController.createTea);
-
-
-//DELETE A TEA
-app.delete('/api/teas/:id', TeaController.deleteTea);
-
-app.patch('/api/teas/:id', TeaController.updateTea);
-
+// Error handling middleware
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
