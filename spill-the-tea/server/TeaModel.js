@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
 // Structure of a document (what fields it should have)
-const teaSchema = new mongoose.Schema({
+const teaSchema = new Schema({
   name: { type: String, required: true },
   origin: { type: String, required: true },
   caffeineLevel: { type: String, required: true },
@@ -12,4 +12,4 @@ const teaSchema = new mongoose.Schema({
 });
 
 // A model is created from a schema; what you use to interact with the database
-module.exports = mongoose.model('tea', teaSchema);
+export default model('tea', teaSchema);
