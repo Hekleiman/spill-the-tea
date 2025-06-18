@@ -1,0 +1,298 @@
+# ==============================================================================
+# COMPREHENSIVE .GITIGNORE FOR FULL-STACK PROJECT
+# ==============================================================================
+
+# ==============================================================================
+# NODE.JS / NPM
+# ==============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json.backup
+.npm
+.yarn-integrity
+
+# ==============================================================================
+# ENVIRONMENT VARIABLES & SECRETS
+# ==============================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+
+# Configuration files with sensitive data
+config/local.json
+config/production.json
+config/development.json
+
+# ==============================================================================
+# BUILD OUTPUTS & DIST
+# ==============================================================================
+dist/
+dist-ssr/
+build/
+out/
+coverage/
+.nyc_output/
+
+# Frontend build outputs
+client/dist/
+client/build/
+
+# Backend build outputs (if using TypeScript)
+server/dist/
+server/build/
+
+# ==============================================================================
+# LOGS
+# ==============================================================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime logs
+*.log.*
+*.out
+*.err
+
+# ==============================================================================
+# DATABASE
+# ==============================================================================
+# MongoDB
+data/
+dump/
+*.db
+*.sqlite
+*.sqlite3
+
+# Redis
+dump.rdb
+
+# ==============================================================================
+# CACHE & TEMPORARY FILES
+# ==============================================================================
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+
+# Temporary folders
+tmp/
+temp/
+.tmp/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ==============================================================================
+# EDITOR & IDE
+# ==============================================================================
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# JetBrains IDEs
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ==============================================================================
+# OPERATING SYSTEM
+# ==============================================================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE_BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ==============================================================================
+# DEVELOPMENT & TESTING
+# ==============================================================================
+# Test coverage
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+
+# Jest
+jest_*
+*.lcov
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+
+# Playwright
+test-results/
+playwright-report/
+
+# ==============================================================================
+# SECURITY & AUTHENTICATION
+# ==============================================================================
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# JWT secrets
+jwt-secret*
+
+# ==============================================================================
+# DEPLOYMENT & PRODUCTION
+# ==============================================================================
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Serverless
+.serverless/
+
+# Vercel
+.vercel
+
+# Netlify
+.netlify/
+
+# AWS
+.aws/
+
+# ==============================================================================
+# FRONTEND SPECIFIC (React/Vite)
+# ==============================================================================
+# Build outputs
+/client/dist
+/client/build
+
+# Vite specific
+*.local
+
+# React specific
+.eslintcache
+
+# ==============================================================================
+# BACKEND SPECIFIC (Express/Node)
+# ==============================================================================
+# Uploads
+uploads/
+public/uploads/
+
+# Session storage
+sessions/
+
+# Static files (if generated)
+/server/public/
+
+# ==============================================================================
+# PACKAGE MANAGERS
+# ==============================================================================
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# PNPM
+.pnpm-debug.log*
+
+# ==============================================================================
+# MISC
+# ==============================================================================
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# SvelteKit build / generate output
+.svelte-kit
+
+# Local netlify folder
+.netlify
